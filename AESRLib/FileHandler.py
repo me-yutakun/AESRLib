@@ -1,7 +1,10 @@
 class fileHandler:
-
-    f,liststr=open(file,'rb'),''
-    for i in f.readlines():
-        liststr+=i.decode()
-    print(liststr)
-    f.close()
+    def reader(self,rfile):
+        with open(rfile, "r") as f:
+            data=f.read()
+            f.close()
+        return (data,len(data))
+    def writer(self, data, wfile):
+        with open(wfile,"w") as f:
+            f.write(data)
+            f.close()
