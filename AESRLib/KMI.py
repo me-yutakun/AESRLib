@@ -3,8 +3,9 @@ from Crypto.Protocol.KDF import PBKDF2
 from Crypto.Cipher import AES
 from Crypto import Random
 import binascii
+import random
+import base64
 import os
-
 class KMI:
     def __init__(self):
         self.plength=32
@@ -27,8 +28,8 @@ class KMI:
     def createConf(self, pwd, file):
         ppass = self.getPrivateKey(pwd)
         iv=Random.new().read(AES.block_size)
-        filelen=str(fileHandler.reader(fileHandler(), file)[1]).encode('utf-8')
-        pKey=self.BtoS(ppass[1])+self.BtoS(iv)+self.BtoS(filelen)
+        flen=str(fileHandler.reader(fileHandler(), file)[1]).encode('utf-8')
+        pKey=self.BtoS(ppass[1])+self.BtoS(iv)+self.BtoS(flen)
         return (AES.new(ppass[0], AES.MODE_CBC, iv),pKey)
 
     def getConf(self, inpass, pKey):
@@ -38,3 +39,13 @@ class KMI:
             return AES.new(pwd, AES.MODE_CBC, iv)
         else:
             raise ValueError("You can't proceed without entering pKey/password!")
+
+    def createAlpha(self):
+        alpha=[chr(i) for i in random.sample(range(32, 126), 94)]
+        return alpha
+
+    def AlphaMap(self, rArray):
+        cArray = [chr(i) for i in range(32, 126)]
+        cmap=dict(zip(cArray,rArray))
+        return cmap
+
