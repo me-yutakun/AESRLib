@@ -1,18 +1,29 @@
-import random
 import base64
+import os
+import random
 from .FileHandler import fileHandler
 from .KMI import KMI
-class Randomizer:
+class Randomize:
     def encrypt(self, file):
-        alpha=KMI.createAlpha(KMI())
-        rawList=fileHandler.readLines(file)[0]
+        alpha = KMI.createAlpha(KMI())
+        rawList = fileHandler.readLines(fileHandler(),file)[0]
+        rawList[len(rawList)-1]+='\n'
         mapper = KMI.AlphaMap(KMI(), alpha)
-        encList=rawList.copy()
-        aKey = ''.join(arr)
-        for i in range(0,len(rawList)):
-            encList[i]=rawList.translate(rawList.maketrans(mapper))
-        loc = random.randint(0, len(rawList) - 1)
-        rawList.insert(loc, aKey)
-        data=''.join(rawList)
-        fileHandler.writer(fileHandler(), data, file)
-        return aKey
+        encList = [None]*len(rawList)
+        aKey = base64.b64encode(''.join(alpha).encode('utf-8')).decode('utf-8')+'\n'
+        for i in range(len(rawList)):
+            encList[i]=rawList[i].translate(rawList[i].maketrans(mapper))
+        loc = random.randint(0, len(rawList)-1)
+        encList.insert(loc, aKey)
+        enc = ''.join(encList)
+        return (enc, loc)
+
+    def decrypt(self, ciphertext, loc):
+        #encList=fileHandler.readLines(fileHandler(), ciphertext)[0]
+        demapper = KMI.transAlphaMap(KMI(), ciphertext, loc)
+        #ciphertext.remove(ciphertext[loc])
+        decList = [None]*len(ciphertext)
+        for i in range(len(ciphertext)):
+            decList[i] = ciphertext[i].translate(ciphertext[i].maketrans(demapper))
+        dec = ''.join(decList).replace(''.join(KMI().cArray),'')
+        return dec

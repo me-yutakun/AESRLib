@@ -1,14 +1,15 @@
-from .FileHandler import fileHandler
-from Crypto.Protocol.KDF import PBKDF2
-from Crypto.Cipher import AES
-from Crypto import Random
-import binascii
-import random
 import base64
+import binascii
 import os
+import random
+from Crypto import Random
+from Crypto.Cipher import AES
+from Crypto.Protocol.KDF import PBKDF2
+from .FileHandler import fileHandler
 class KMI:
     def __init__(self):
         self.plength=32
+        self.cArray = [chr(i) for i in range(32, 126)]
 
     def StoB(self, s):
         return binascii.unhexlify(s)
@@ -25,12 +26,11 @@ class KMI:
         key = PBKDF2(pwd, salt, 64, 1000)
         return key[:32]
         
-    def createConf(self, pwd, file):
+    def createConf(self, pwd):
         ppass = self.getPrivateKey(pwd)
         iv=Random.new().read(AES.block_size)
-        flen=str(fileHandler.reader(fileHandler(), file)[1]).encode('utf-8')
-        pKey=self.BtoS(ppass[1])+self.BtoS(iv)+self.BtoS(flen)
-        return (AES.new(ppass[0], AES.MODE_CBC, iv),pKey)
+        iKey=self.BtoS(ppass[1])+self.BtoS(iv)
+        return (AES.new(ppass[0], AES.MODE_CBC, iv), iKey)
 
     def getConf(self, inpass, pKey):
         if(inpass is not None and pKey is not None):
@@ -45,7 +45,10 @@ class KMI:
         return alpha
 
     def AlphaMap(self, rArray):
-        cArray = [chr(i) for i in range(32, 126)]
-        cmap=dict(zip(cArray,rArray))
+        cmap=dict(zip(self.cArray,rArray))
         return cmap
 
+    def transAlphaMap(self, rlist, loc):
+        rgen=base64.b64decode(rlist.pop(loc).encode('utf-8')).decode('utf-8')
+        transAlpha=dict(zip(list(rgen),self.cArray))
+        return transAlpha
