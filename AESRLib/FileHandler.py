@@ -25,7 +25,11 @@ class fileHandler:
             f.close()
 
     def readLines(self, rfile):
-        with open(rfile, "r") as f:
-            data=f.readlines()
-            f.close()
+        try:
+            if os.path.exists(rfile):
+                with open(rfile, "r") as f:
+                    data=f.readlines()
+                    f.close()
+        except IOError as e:
+            print(e)
         return (data,len(data))
