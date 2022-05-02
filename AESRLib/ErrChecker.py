@@ -1,17 +1,14 @@
 import os
 class ErrorScan:
-    def nTry(self,ismodify):
+    def nTry(self,ismodify=None) -> int:
         if not os.path.exists('nt'):
             f=open('nt','x')
             f.close()
-
         with open('nt', 'r') as f:
             erc = f.read(1)
             f.close()
-
         if (erc == '' or erc is None):
             erc=0
-
         erc=int(erc)
         if(ismodify):
             with open('nt','w') as f:

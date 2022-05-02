@@ -1,35 +1,41 @@
 import os
+from typing import List
 class fileHandler:
-    def isFile(self, file):
-        try:
-            if(os.path.isfile(os.path.join(os.getcwd(), os.path.basename(file)))):
-                return True
-            else:
-                return False
-        except:
+    def isExistingFile(self, file: str) -> bool:
+        if os.path.isfile(os.path.join(os.getcwd(), os.path.basename(file))):
+            return True
+        else:
             return False
 
-    def reader(self, rfile):
+    def reader(self, rfile: str) -> tuple[str,int]:
         try:
-            if os.path.exists(rfile):
+            if os.path.getsize(rfile) > 0:
                 with open(rfile, "r") as f:
                     data=f.read()
                     f.close()
+            else:
+                print('Provided file is empty!')
+                exit(1)
         except IOError as e:
             print(e)
+            exit(1)
         return (data,len(data))
 
-    def writer(self, data, wfile):
-        with open(wfile,"w") as f:
+    def writer(self, data: str, wfile: str):
+        with open(os.path.basename(wfile),"w") as f:
             f.write(data)
             f.close()
 
-    def readLines(self, rfile):
+    def readLines(self, rfile: str) -> tuple[List[str],int]:
         try:
-            if os.path.exists(rfile):
+            if os.path.getsize(rfile) > 0:
                 with open(rfile, "r") as f:
                     data=f.readlines()
                     f.close()
+            else:
+                print('Provided file is empty!')
+                exit(1)
         except IOError as e:
             print(e)
+            exit(1)
         return (data,len(data))

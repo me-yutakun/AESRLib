@@ -5,7 +5,7 @@ from .Randomizer import Randomize
 class AESEncrypter:
     def __init__(self):
         self.PAD_SIZE=16
-        self.sepc='.'
+        self.sep='.'
 
     def pad(self,s: str) -> str:
         s+= (self.PAD_SIZE - len(s) % self.PAD_SIZE) * chr(self.PAD_SIZE - len(s) % self.PAD_SIZE)
@@ -26,19 +26,19 @@ def initializer(file):
         choice = input("Do you want to create a new key or proceed with existing key: [y/n]")
         match choice.lower():
             case 'y':
-                print("<--- ENCRYPTION INTERFACE -->")
                 flag=True
                 while(flag):
                     try:
-                        if(fileHandler.isFile(fileHandler(), file)):
-                            flen = str(fileHandler.reader(fileHandler(), file)[1]).encode('utf-8')
+                        if(fileHandler.isExistingFile(fileHandler(), file)):
+                            print("<--- ENCRYPTION INTERFACE -->")
+                            flen = str(fileHandler.reader(fileHandler(), file)[1])
                             renc,ptr=Randomize.encrypt(Randomize(), file)
                             pwd = input("Please enter a new password:")
                             print("Executing Phase 1/2 Encryption")
                             print("Executing Phase 2/2 Encryption")
                             conf = KMI.createConf(KMI(), pwd)
                             enc = KMI.BtoS(KMI(), AESEncrypter.AESencrypt(AESEncrypter(), renc, conf[0]))
-                            pKey = conf[1] + KMI.BtoS(KMI(), (str(ptr) + AESEncrypter().sepc).encode('utf-8')) + KMI.BtoS(KMI(), flen)
+                            pKey = conf[1] + KMI.BtoS(KMI(), (str(ptr) + AESEncrypter().sep).encode('utf-8')) + KMI.BtoS(KMI(), flen.encode('utf-8'))
                             print("Done. Started automated fault check [beta]...")
                             flag = FaultCheck.faultTest(FaultCheck())
                             if(flag):
@@ -48,13 +48,13 @@ def initializer(file):
                             print("Your pKey is: {}".format(pKey))
                             fileHandler.writer(fileHandler(), enc, file)
                         else:
-                            print("Please provide input file!")
+                            print("Provided input is not a file! Give filename including exts [e.g.] test.txt ")
                             break
                     except Exception as e:
                         print(e)
             case 'n':
                 try:
-                    if (fileHandler.isFile(fileHandler(), file)):
+                    if (fileHandler.isExistingFile(fileHandler(), file)):
                         print("<-- DECRYPTION INTERFACE -->")
                         print("Note: Max 3 attempts are allowed! Its case sensitive.")
                         pKey=input("Please enter your pKey:")
@@ -62,19 +62,17 @@ def initializer(file):
                         conf = KMI.getConf(KMI(), pwd, pKey)
                         bdec = KMI.StoB(KMI(), fileHandler.reader(fileHandler(), file)[0])
                         dec = AESEncrypter.AESdecrypt(AESEncrypter(), bdec, conf)
-                        lsep=pKey.rindex(KMI.BtoS(KMI(), AESEncrypter().sepc.encode('utf-8')))
+                        lsep=pKey.rindex(KMI.BtoS(KMI(), AESEncrypter().sep.encode('utf-8')))
                         loc,sep=pKey[2*KMI().plength:lsep],pKey[lsep+2:]
                         ptr = int(KMI.StoB(KMI(), loc).decode('utf-8'))
                         rdec = Randomize.decrypt(Randomize(), dec.splitlines(True), ptr)[:int(KMI.StoB(KMI(),sep).decode('utf-8'))]
                         fileHandler.writer(fileHandler(), rdec, file)
                         print("Decrypted Successfully.")
                     else:
-                        print("Please provide input file!")
-                except UnicodeDecodeError:
+                        print("Provided input is not a file! Give filename including exts [e.g.] test.txt ")
+                except Exception as e:
                     ErrorScan.nTry(ErrorScan(), True)
                     print("You entered wrong password!")
-                except Exception as e:
-                    print(e)
             case _:
                 raise ValueError("Please provide valid input!")
     else:
