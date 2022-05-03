@@ -36,7 +36,8 @@ Providing the abstract function for instant use makes the user's task too easy a
 Ensure that the script using AESR is run in the **same root folder** as the file.
 
 ### 1.1.2 **Alternative** ###
-Executable file (*.exe) for windows based systems is also available in this same repo for instant usage, so just download it and run directly or opening cmd/powershell and typing .\AESR if screen is exiting too fast after showing error.
+Executable file (*.exe) for windows based systems is also available at [https://mega.nz/file/1k8nzYib#evvzAgQiqgSldDx1Xi9odKMhOZLxDss1qJPkWv5ZhCA] for instant usage, so just download it and run directly or open cmd/powershell and type .\AESR if screen is exiting too fast after showing error or isn't executing.
+N.S. The file often gets blocked by windows defender smartscreen or shows PUP/virus alert. In that case please install it using above steps.
 
 ## **Future Proposals** ##
 1. Includes enhancement for randomization function
