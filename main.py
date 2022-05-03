@@ -1,5 +1,5 @@
 import AESRLib as ar
-import sys
+
 print("### WELCOME TO AESRandomizer1.0 ###")
 print("We support only file input as of now, string support to be added in future.")
 ip=input("Pls enter filename for encryption/decryption:")
