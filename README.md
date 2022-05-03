@@ -4,24 +4,25 @@ PyPi package for variable key based triple layer capsule encryption with power o
 
 **Index**
 
-- [AESRLib - The blend of AES-**R**](#aesrlib---the-blend-of-aes-r)
+  - [AESRLib - The blend of AES-**R**](https://pypi.org/project/AESRLib/)
         - [v1.0-beta [beta-release]](#v10-beta-beta-release)
-  - [**1.1 Usage**](#11-usage)
-    - [1.2 Installation](#12-installation)
-    - [1.3 Using it](#13-using-it)
-  - [**2.1 Future Proposals**](#21-future-proposals)
-  - [**3.1 LICENSE**](#31-license)
+  - [Usage](#usage)
+    - [1.1.1 Installation](#111-installation)
+      - [1.2 Using it](#12-using-it)
+    - [1.1.2 Alternative](#112-alternative)
+  - [Future Proposals](#future-proposals)
+  - [LICENSE](#license)
 
 
-## **1.1 Usage** ##
+## **Usage** ##
 To install and use it follow below steps as per convenience.
 
-### 1.2 Installation ###
+### 1.1.1 **Installation** ###
 To download it, either fork this github repo or simply use Pypi via pip in a python3 supported environment.
 ```
-$ pip install AESRLib
+pip install AESRLib
 ```
-### 1.3 Using it ###
+#### 1.2 **Using it** ####
 First, import the module using:
 ```
 import AESRLib as aesr
@@ -31,13 +32,17 @@ And you are ready to go! The interactive function to trigger AESR for ready-to-u
 aesr.AESRandomizer.initializer(filename)
 ```
 filename - Its the input filename given with extension for processing like 'test.txt'
-Providing the abstract function for instant use makes the user's task too easy and handy.
+Providing the abstract function for instant use makes the user's task too easy and readily accessible
+Ensure that the script using AESR is run in the **same root folder** as the file.
 
-## **2.1 Future Proposals** ##
+### 1.1.2 **Alternative** ###
+Executable file (*.exe) for windows based systems is also available in this same repo for instant usage, so just download it and run directly or opening cmd/powershell and typing .\AESR if screen is exiting too fast after showing error.
+
+## **Future Proposals** ##
 1. Includes enhancement for randomization function
 2. Bug fixes
 
-## **3.1 LICENSE** ##
+## **LICENSE** ##
 MIT License Copyright (c) 2018
 
- **Updated**: 3.5.22 5.04.00 PM
+ **Updated**: 3.5.22 6.54.00 PM
