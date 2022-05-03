@@ -2,7 +2,6 @@ from .ErrChecker import ErrorScan, FaultCheck
 from .FileHandler import fileHandler
 from .KMI import KMI
 from .Randomizer import Randomize
-from sys import exit
 class AESEncrypter:
     def __init__(self):
         self.PAD_SIZE=16
@@ -23,7 +22,7 @@ class AESEncrypter:
         return self.unpad(conf.decrypt(ciphertext).decode('utf-8'))
 
 def initializer(file):
-    if(ErrorScan.nTry(ErrorScan(), None)<3):
+    if ErrorScan.nTry(ErrorScan(), None)<3:
         choice = input("Do you want to create a new key or proceed with existing key: [y/n]")
         match choice.lower():
             case 'y':
@@ -71,11 +70,10 @@ def initializer(file):
                         print("Decrypted Successfully.")
                     else:
                         print("Provided input is not a file! Give filename including exts [e.g.] test.txt ")
-                except Exception as e:
+                except Exception:
                     ErrorScan.nTry(ErrorScan(), True)
                     print("You entered wrong password!")
             case _:
                 raise ValueError("Please provide valid input!")
     else:
         print("You exceeded max attempts!")
-        exit(1)

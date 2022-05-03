@@ -4,7 +4,7 @@ from .FileHandler import fileHandler
 from .KMI import KMI
 class Randomize:
     def encrypt(self, file: str) -> tuple[str, int]:
-        if(fileHandler.isExistingFile(fileHandler(),file)):
+        if fileHandler.isExistingFile(fileHandler(),file):
             alpha = KMI.createAlpha(KMI())
             rawList = fileHandler.readLines(fileHandler(),file)[0]
             rawList[len(rawList)-1]+='\n'

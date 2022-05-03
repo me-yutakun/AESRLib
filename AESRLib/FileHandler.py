@@ -11,7 +11,7 @@ class fileHandler:
     def reader(self, rfile: str) -> tuple[str,int]:
         try:
             if os.path.getsize(rfile) > 0:
-                with open(rfile, "r") as f:
+                with open(rfile, "r",encoding="utf-8") as f:
                     data=f.read()
                     f.close()
             else:
@@ -23,14 +23,14 @@ class fileHandler:
         return (data,len(data))
 
     def writer(self, data: str, wfile: str):
-        with open(os.path.basename(wfile),"w") as f:
+        with open(os.path.basename(wfile),"w",encoding="utf-8") as f:
             f.write(data)
             f.close()
 
     def readLines(self, rfile: str) -> tuple[List[str],int]:
         try:
             if os.path.getsize(rfile) > 0:
-                with open(rfile, "r") as f:
+                with open(rfile, "r",encoding="utf-8") as f:
                     data=f.readlines()
                     f.close()
             else:
