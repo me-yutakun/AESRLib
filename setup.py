@@ -11,7 +11,7 @@ setup(
   download_url = 'https://github.com/me-yutakun/AESRLib/archive/refs/tags/v1.0-beta.tar.gz',
   keywords = ['AES', 'Random', 'base64'],
   install_requires=[
-          'pycryptodome'
+          'pycryptodome',
       ],
   classifiers=[
     'Development Status :: 4 - Beta',      # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
