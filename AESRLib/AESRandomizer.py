@@ -48,7 +48,7 @@ def initializer(file):
                             print("Your pKey is: {}".format(pKey))
                             fileHandler.writer(fileHandler(), enc, file)
                         else:
-                            print("Provided input is not a file! Give filename including exts [e.g.] test.txt ")
+                            print("Provided input is not a file or doesn't exist! Give filename including exts [e.g.] test.txt ")
                             break
                     except Exception as e:
                         print(e)
@@ -69,7 +69,7 @@ def initializer(file):
                         fileHandler.writer(fileHandler(), rdec, file)
                         print("Decrypted Successfully.")
                     else:
-                        print("Provided input is not a file! Give filename including exts [e.g.] test.txt ")
+                        print("Provided input is not a file or doesn't exist! Give filename including exts [e.g.] test.txt ")
                 except Exception:
                     ErrorScan.nTry(ErrorScan(), True)
                     print("You entered wrong password!")
