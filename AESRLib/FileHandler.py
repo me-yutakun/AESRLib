@@ -14,13 +14,13 @@ class fileHandler:
                 with open(rfile, "r",encoding="utf-8") as f:
                     data=f.read()
                     f.close()
+                return (data,len(data))
             else:
                 print('Provided file is empty!')
                 exit(1)
         except IOError as e:
             print(e)
             exit(1)
-        return (data,len(data))
 
     def writer(self, data: str, wfile: str):
         with open(os.path.basename(wfile),"w",encoding="utf-8") as f:
@@ -33,10 +33,10 @@ class fileHandler:
                 with open(rfile, "r",encoding="utf-8") as f:
                     data=f.readlines()
                     f.close()
+                return (data,len(data))
             else:
                 print('Provided file is empty!')
                 exit(1)
         except IOError as e:
             print(e)
             exit(1)
-        return (data,len(data))
