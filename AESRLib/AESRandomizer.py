@@ -2,6 +2,7 @@ from .ErrChecker import ErrorScan, FaultCheck
 from .FileHandler import fileHandler
 from .KMI import KMI
 from .Randomizer import Randomize
+from sys import exit
 class AESEncrypter:
     def __init__(self):
         self.PAD_SIZE=16

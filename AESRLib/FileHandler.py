@@ -1,5 +1,6 @@
 import os
 from typing import List
+from sys import exit
 class fileHandler:
     def isExistingFile(self, file: str) -> bool:
         if os.path.isfile(os.path.join(os.getcwd(), os.path.basename(file))):
