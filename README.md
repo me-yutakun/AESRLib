@@ -8,6 +8,7 @@ PyPi package for variable key based triple layer capsule encryption with power o
   - [1.0 Changelog](#10-changelog)
   - [2.0 Usage](#20-usage)
     - [2.1 Installation](#21-installation)
+      - [2.1.1 Pre-requisities](#211-pre-requisities)
     - [2.2 Using it](#22-using-it)
       - [2.2.1 With IDE/IDLE ](#221-with-ideidle)
       - [2.2.2 With CMD/PS/Terminal ](#222-with-cmdpsterminal)
@@ -28,6 +29,8 @@ To download it, either fork this github repo or simply use Pypi via pip in a pyt
 ```
 pip install AESRLib
 ```
+#### 2.1.1 Pre-requisities ####
+python>=3.10, pycryptodome
 
 ### 2.2 **Using it** ###
 #### 2.2.1 With IDE/IDLE ####

@@ -10,14 +10,14 @@ setup(
   description = 'Crypto package based on variable key leveraging combo of AES and Randomization!',
   long_description_content_type = 'text/markdown',
   long_description = long_description,
+  python_requires=">=3.10",
   author = 'Shubham Chakraborty',
   author_email = 'cosmoscandium@gmail.com',
   url = 'https://github.com/me-yutakun/AESRLib',
-  download_url = 'https://github.com/me-yutakun/AESRLib/archive/refs/tags/v1.0-beta.tar.gz',
+  download_url = 'https://github.com/me-yutakun/AESRLib/archive/refs/tags/v1.0-beta2.tar.gz',
   keywords = ['AES', 'Random', 'base64'],
   install_requires=[
           'pycryptodome',
-          'python>=3.10',
       ],
   classifiers=[
     'Development Status :: 4 - Beta',      # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
