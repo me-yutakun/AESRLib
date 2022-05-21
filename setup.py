@@ -5,7 +5,7 @@ long_description = (this_directory/"README.md").read_text()
 setup(
   name = 'AESRLib',
   packages = ['AESRLib'],
-  version = 'v2.0-beta',
+  version = 'v1.0-beta2',
   license ='MIT',
   description = 'Crypto package based on variable key leveraging combo of AES and Randomization!',
   long_description_content_type = 'text/markdown',
