@@ -1,5 +1,5 @@
 # AESRLib - The blend of AES-**R** #
-##### v2.0-beta [beta-release] #####
+##### v1.0 release #####
 PyPi package for variable key based triple layer capsule encryption with power of AES, base64 and user-defined **randomizer (R)** functions.
 
 **Index**
@@ -16,7 +16,7 @@ PyPi package for variable key based triple layer capsule encryption with power o
   - [4.0 LICENSE](#40-license)
 
 ## **1.0 Changelog** ##
-> What's new in **v1.0b1** (v1.0-beta) than **v1.0b0** (v1.0-beta2)
+> What's new in **v1.0** (v1.0) than **v1.0b0** (v1.0-beta)
 
 * Additions: Version compatibility, password validations and retries, error handling, minor casting and snake case fixes.
 * Removals: nTry method for multiple attempts check.

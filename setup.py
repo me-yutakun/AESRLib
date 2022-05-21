@@ -5,7 +5,7 @@ long_description = (this_directory/"README.md").read_text()
 setup(
   name = 'AESRLib',
   packages = ['AESRLib'],
-  version = 'v1.0-beta2',
+  version = 'v1.0',
   license ='MIT',
   description = 'Crypto package based on variable key leveraging combo of AES and Randomization!',
   long_description_content_type = 'text/markdown',
@@ -14,7 +14,7 @@ setup(
   author = 'Shubham Chakraborty',
   author_email = 'cosmoscandium@gmail.com',
   url = 'https://github.com/me-yutakun/AESRLib',
-  download_url = 'https://github.com/me-yutakun/AESRLib/archive/refs/tags/v1.0-beta2.tar.gz',
+  download_url = 'https://github.com/me-yutakun/AESRLib/archive/refs/tags/v1.0.tar.gz',
   keywords = ['AES', 'Random', 'base64'],
   install_requires=[
           'pycryptodome',
