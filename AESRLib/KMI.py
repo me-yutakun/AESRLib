@@ -1,54 +1,53 @@
+import os
 import base64
 import binascii
-import os
 import random
 from Crypto import Random
 from Crypto.Cipher import AES
 from Crypto.Protocol.KDF import PBKDF2
-from .FileHandler import fileHandler
-class KMI:
+
+class kmi:
     def __init__(self):
         self.plength=32
-        self.cArray = [chr(i) for i in range(32, 126)]
+        self.carray = [chr(i) for i in range(32, 126)]
 
-    def StoB(self, s):
+    def stob(self, s: str) -> bytes:
         return binascii.unhexlify(s)
 
-    def BtoS(self, b):
+    def btos(self, b: bytes) -> str:
         return str(binascii.hexlify(b))[2:-1]
 
-    def getPrivateKey(self,password):
+    def getprivatekey(self, passwd: str) -> tuple[bytes, bytes]:
         salt = os.urandom(16)
-        key = PBKDF2(password, salt, 64, 1000)
+        key = PBKDF2(passwd, salt, 64, 1000)
         return (key[:32],salt)
-    
-    def returnPKey(self, pwd, salt):
+
+    def returnpkey(self, pwd: str, salt: bytes) -> bytes:
         key = PBKDF2(pwd, salt, 64, 1000)
         return key[:32]
-        
-    def createConf(self, pwd):
-        ppass = self.getPrivateKey(pwd)
-        iv=Random.new().read(AES.block_size)
-        iKey=self.BtoS(ppass[1])+self.BtoS(iv)
-        return (AES.new(ppass[0], AES.MODE_CBC, iv), iKey)
 
-    def getConf(self, inpass, pKey):
+    def createconf(self, pwd: str):
+        ppass = self.getprivatekey(pwd)
+        iv=Random.new().read(AES.block_size)
+        return (AES.new(ppass[0], AES.MODE_CBC, iv), ppass[1], iv)
+
+    def getconf(self, inpass: str, pKey: str):
         if(inpass is not None and pKey is not None):
-            pwd=self.returnPKey(inpass, self.StoB(pKey[:self.plength]))
-            iv=self.StoB(pKey[self.plength:2*self.plength])
+            pwd=self.returnpkey(inpass, self.stob(pKey[:self.plength]))
+            iv=self.stob(pKey[self.plength:2*self.plength])
             return AES.new(pwd, AES.MODE_CBC, iv)
         else:
             raise ValueError("You can't proceed without entering pKey/password!")
 
-    def createAlpha(self):
+    def createalpha(self) -> list[str]:
         alpha=[chr(i) for i in random.sample(range(32, 126), 94)]
         return alpha
 
-    def AlphaMap(self, rArray):
-        cmap=dict(zip(self.cArray,rArray))
+    def alphamap(self, rarray: list[str]) -> dict[str,str]:
+        cmap=dict(zip(self.carray,rarray))
         return cmap
 
-    def transAlphaMap(self, rlist, loc):
+    def transalphamap(self, rlist: list[str], loc: int) -> dict[str,str]:
         rgen=base64.b64decode(rlist.pop(loc).encode('utf-8')).decode('utf-8')
-        transAlpha=dict(zip(list(rgen),self.cArray))
-        return transAlpha
+        transalpha=dict(zip(list(rgen),self.carray))
+        return transalpha
