@@ -85,7 +85,7 @@ def initializer(file: str) -> None:
                     else:
                         raise BlockingIOError("Provided input is not a file or doesn't exist! Give filename including exts [e.g.] test.txt ")
                 except Exception:
-                    raise ValueError("You entered wrong password!")
+                    print("You entered wrong password!")
             case _:
                 raise ValueError("Please provide valid input!")
     else:

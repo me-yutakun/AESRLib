@@ -1,5 +1,5 @@
 # AESRLib - The blend of AES-**R** #
-##### v1.0 release #####
+##### v1.1 release #####
 PyPi package for variable key based triple layer capsule encryption with power of AES, base64 and user-defined **randomizer (R)** functions.
 
 **Index**
@@ -16,19 +16,19 @@ PyPi package for variable key based triple layer capsule encryption with power o
   - [4.0 LICENSE](#40-license)
 
 ## **1.0 Changelog** ##
-> What's new in **v1.0** (v1.0) than **v1.0b0** (v1.0-beta)
+> What's new in **v1.1** (v1.1) than **v1.0** (v1.0)
 
-* Additions: Version compatibility, password validations and retries, error handling, minor casting and snake case fixes.
-* Removals: nTry method for multiple attempts check.
+* Fixes (minor): Converted the ValueError for wrong password alert into a log message.
 
 ## **2.0 Usage** ##
 To install and use it follow below steps as per convenience.
 
 ### 2.1 **Installation** ###
-To download it, either fork this github repo or simply use Pypi via pip in a python3 supported environment. If you don't have python in your system, download from python official site (https://www.python.org/downloads)
+* To download, simply use pip to download it from pypi in a python3 supported environment. If you don't have python in your system, download it from python official site (https://www.python.org/downloads)
 ```
 pip install AESRLib
 ```
+* To contribute, fork the git repo and proceed (https://github.com/me-yutakun/AESRLib)
 #### 2.1.1 Pre-requisities ####
 python>=3.10, pycryptodome
 
@@ -62,4 +62,4 @@ A ready to use way for running it without any hassle, just follow the steps (aft
 ## **4.0 LICENSE** ##
 MIT License Copyright (c) 2018
 
-###### **Updated**: 21.5.22 6.00.00 PM (IST)
+###### **Updated**: 22.5.22 8.30 PM (IST)
